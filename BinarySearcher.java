@@ -1,5 +1,5 @@
 /* 
-* This class creates an arraylist and holds methods that add numbers to it,
+* This class creates an arraylist and holds methods   that add numbers to it,
 * sort it, and eventually find a number in it, as well as print it out.
 *
 * @author  Douglass Jeffrey
@@ -13,32 +13,19 @@ import java.util.ArrayList;
 public class BinarySearcher {
   
   // Private fields that will be used in methods
-  private int amountOfNums;
-  private int maxNum;
   private int topIndex;
   private int botIndex;
   private int midIndex;
   
   // Creates arraylist that will be filled with numbers
   private ArrayList<Integer> numArray = new ArrayList<Integer>();
-  
-  /**
-  * Method for adding random numbers to list.
-  */
-  public BinarySearcher() {
-    this.amountOfNums = 250;
-    this.maxNum = 100;
-    this.topIndex = numArray.size() - 1;
-    this.botIndex = 0;
-    this.midIndex = 0 ;
-  }
 
   /**
   * Method for adding random numbers to list.
   */
   public void numAdder() {
-    for (int counter = 0; counter < amountOfNums; counter++) {
-      int randomInt = (int) (Math.random() * maxNum + 1);
+    for (int counter = 0; counter < 250; counter++) {
+      int randomInt = (int) (Math.random() * 100 + 1);
       numArray.add(randomInt);
     }
   }
@@ -71,18 +58,30 @@ public class BinarySearcher {
   }
 
   /**
+  * Method for defining low bounds and high bounds of search. Begins search
+  * at the end of the method.
+  */
+  public int searchFinder(int searchNum) {
+    
+    this.topIndex = numArray.size() - 1;
+    this.botIndex = 0;
+    return (finder(searchNum, topIndex, botIndex));
+  }
+
+
+  /**
    * method that finds the users number in the sorted list.
    */
-  public int finder(int searchNum) {
+  private int finder(int searchNum, int topIndex, int botIndex) {
 
     this.midIndex = (int) Math.floor((botIndex + topIndex) / 2);
     if (searchNum > numArray.get(midIndex)) {
-      this.botIndex = midIndex + 1; 
-      return (finder(searchNum));
+      botIndex = midIndex + 1; 
+      return (finder(searchNum, topIndex, botIndex));
 
     } else if (searchNum < numArray.get(midIndex)) {
-      this.topIndex = midIndex - 1;
-      return (finder(searchNum));
+      topIndex = midIndex - 1;
+      return (finder(searchNum, topIndex, botIndex));
 
     } else {
       // Returning the index spot of the number in the array
