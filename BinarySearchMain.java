@@ -11,7 +11,7 @@
 // Import the Scanner class
 import java.util.Scanner;
 
-public class BinarySearchMain {
+public class Main {
 
   /**
   * This program sorts a set of 250 or greater numbers located in an arraylist.
@@ -104,7 +104,7 @@ public class BinarySearchMain {
       // calls finder method and tells them where their number is located
       System.out.println();
       System.out.println("First determined location in array: " 
-                         + classSearch.finder(searchNum));
+                         + classSearch.searchFinder(searchNum));
 
       // states current values located in arraylist
       System.out.println();
